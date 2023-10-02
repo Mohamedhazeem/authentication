@@ -2,9 +2,9 @@
   "name": "authentication",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "dev": "vite",
+    "dev": "nodemon -watch \"src/backend/**\" --ext\"ts,json\" --exec \"ts-node src/backend/index.ts\"",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -16,7 +16,8 @@
     "mongoose": "^7.5.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
