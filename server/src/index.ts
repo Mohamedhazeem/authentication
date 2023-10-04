@@ -1,10 +1,19 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import 'dotenv/config';
 
-const app = express();
+import { authModel } from '../models/authModel';
+import { signUpController } from '../controllers/signUpController';
 
-app.listen(3000, () => {console.log(process.env.DATABASE)})
+const app = express();
+app.use(express.json());
+
+mongoose.connect(process.env.DATABASE!).then(
+    ()=>app.listen(3000, () => {console.log('connected')})
+).catch(()=> console.log('Failed to connect'))
+
+app.post('/signup',signUpController);
 
 app.get('/', (req, res) =>{
-    res.send('hello hazeem')
+    res.json('hello hazeem')
 })
