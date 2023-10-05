@@ -6,16 +6,14 @@ export const signUpController = async (req: Request, res: Response) => {
 
   try {
     const existUser = await authModel.findOne({
-      email: email,
-      password: password,
-    });
+      email: email});
 
     if (existUser) {
-      res.json({ msg: "User already exists" });
+      res.status(409).json({ msg: "User already exists" });
     } else {
       const user = new authModel({ email: email, password: password });
       const savedUser = await user.save();
-      res.json(savedUser);
+      res.status(201).json(savedUser);
     }
   } catch (error) {
     console.log(error);

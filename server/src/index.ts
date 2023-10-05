@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
-import { authModel } from '../models/authModel';
 import { signUpController } from '../controllers/signUpController';
 
 const app = express();
