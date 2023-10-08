@@ -1,11 +1,22 @@
+import { useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
+import { SignUp } from "./SignUp";
 export const Home = () => {
+  const [isShowSignUp, setIsShowSignUp] = useState(false);
+
+  const showSignUp = () => {
+    console.log(!isShowSignUp);
+    setIsShowSignUp(!isShowSignUp);
+  };
   return (
     <>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-100 w-80 h-[40%] rounded-xl flex flex-col justify-center items-center gap-4 ">
         <BsPersonCircle size={50} />
         <div className="flex flex-col justify-center items-center gap-10">
-          <button className="bg-green-400 w-48 text-lg font-semibold rounded-xl">
+          <button
+            className="bg-green-400 w-48 text-lg font-semibold rounded-xl"
+            onClick={() => showSignUp()}
+          >
             CREATE AN ACCOUNT
           </button>
           <div className="flex flex-col justify-center items-center gap-2">
@@ -15,6 +26,7 @@ export const Home = () => {
             </button>
           </div>
         </div>
+        <SignUp isShow={isShowSignUp} />;
       </div>
     </>
   );
