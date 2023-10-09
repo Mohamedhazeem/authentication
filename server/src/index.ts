@@ -1,10 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
-
+import cors from 'cors';
 import { signUpController } from '../controllers/signUpController';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.DATABASE!).then(
