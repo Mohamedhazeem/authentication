@@ -1,9 +1,16 @@
 import { BsPersonCircle } from "react-icons/bs";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
+import { Alert, AlertType } from "./Alert";
+import { AlertEnum } from "./alertEnum";
+
 export const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [res, setRes] = useState<AlertType>({
+    isExist: AlertEnum.none,
+    msg: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,18 +26,19 @@ export const SignUp = () => {
         },
         options
       )
-      .then((response) => {
+      .then((response: AxiosResponse<AlertType>) => {
+        setRes(response.data);
         console.log(response);
       })
       .catch(async (error: Error) => {
         const errorMessage = await error.message;
         console.log(errorMessage);
-        const data = { msg: `User with email ${email} already exists` };
-        console.log(data);
       });
   };
   return (
     <>
+      <Alert isExist={res!.isExist} msg={res!.msg} />
+
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-200 w-80 h-[40%] rounded-xl flex flex-col justify-center items-center gap-2 ">
         <BsPersonCircle size={50} />
         <form
