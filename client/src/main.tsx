@@ -4,6 +4,7 @@ import "./main.css";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Home } from "./Home";
 import { Navbar } from "./Navbar";
+import { SignUp } from "./SignUp";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <Home />,
+        element: <SignUp />,
       },
     ],
   },

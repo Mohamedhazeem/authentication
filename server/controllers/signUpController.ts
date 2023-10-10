@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { authModel } from "../models/authModel";
+import { Error } from "mongoose";
 
 export const signUpController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -14,8 +15,7 @@ export const signUpController = async (req: Request, res: Response) => {
       const savedUser = await user.save();
       res.json(savedUser);
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: `Error creating user: ${error.message}` });
+  } catch {
+    res.status(500).json({ msg: `Error creating user` });
   }
 };
