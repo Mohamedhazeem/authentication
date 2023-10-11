@@ -16,7 +16,7 @@ export const signUpController = async (req: Request, res: Response) => {
       email: email});
 
     if (existUser) {
-      return res.json({isExist:AlertEnum.signed, msg: `User with email ${email} already exists` });
+      return res.json({isExist:AlertEnum.signed, msg: `User with email ${email} already exists, Please try Log In` });
     } else {
       const user = new authModel({ email: email, password: password });
       const savedUser = await user.save();
