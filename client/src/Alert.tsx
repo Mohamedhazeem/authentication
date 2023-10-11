@@ -10,11 +10,6 @@ export type AlertType = {
 export const Alert = ({ isExist, msg }: AlertType) => {
   const [isShow, setIsShow] = useState<boolean>(true);
 
-  const handleShow = () => {
-    setIsShow(true);
-    isExist = AlertEnum.none;
-  };
-
   return (
     <>
       {isExist == AlertEnum.signed && isShow && (
@@ -28,7 +23,6 @@ export const Alert = ({ isExist, msg }: AlertType) => {
               onClick={() => {
                 console.log("click");
                 setIsShow(false);
-                setTimeout(handleShow, 1000);
               }}
             >
               {""}
@@ -39,7 +33,7 @@ export const Alert = ({ isExist, msg }: AlertType) => {
       )}
       {isExist == AlertEnum.signUp && isShow && (
         <div
-          className="bg-red-100 border border-red-400 text-green-700 px-4 py-3 rounded relative"
+          className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
           role="alert"
         >
           <p className="block sm:inline">{msg}</p>
@@ -56,7 +50,6 @@ export const Alert = ({ isExist, msg }: AlertType) => {
           </span>
         </div>
       )}
-      {isExist == AlertEnum.none && <div></div>}
     </>
   );
 };

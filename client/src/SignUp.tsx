@@ -37,7 +37,7 @@ export const SignUp = () => {
   };
   return (
     <>
-      <Alert isExist={res!.isExist} msg={res!.msg} />
+      <Alert key={crypto.randomUUID()} isExist={res!.isExist} msg={res!.msg} />
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-200 w-80 h-[40%] rounded-xl flex flex-col justify-center items-center gap-2 ">
         <BsPersonCircle size={50} />
