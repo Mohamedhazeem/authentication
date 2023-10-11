@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import cors from 'cors';
 import { signUpController } from '../controllers/signUpController';
+import { loginController } from '../controllers/loginController';
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ mongoose.connect(process.env.DATABASE!).then(
 ).catch(()=> console.log('Failed to connect'))
 
 app.post('/signup',signUpController);
+app.get('/login',loginController);
 
 app.get('/', (req, res) =>{
     res.json('hello hazeem')
