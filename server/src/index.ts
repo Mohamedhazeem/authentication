@@ -4,6 +4,8 @@ import 'dotenv/config';
 import cors from 'cors';
 import { signUpController } from '../controllers/signUpController';
 import { loginController } from '../controllers/loginController';
+import { authModel } from '../models/authModel';
+
 
 const app = express();
 app.use(cors());

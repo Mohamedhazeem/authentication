@@ -5,11 +5,6 @@ import { useNavigate } from "react-router-dom";
 export const Home = () => {
   //const [isShowSignUp, setIsShowSignUp] = useState(false);
   const navigate = useNavigate();
-  const showSignUp = () => {
-    navigate("/signup");
-    //console.log(!isShowSignUp);
-    //setIsShowSignUp(!isShowSignUp);
-  };
   return (
     <>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-100 w-80 h-[40%] rounded-xl flex flex-col justify-center items-center gap-4 ">
@@ -17,13 +12,16 @@ export const Home = () => {
         <div className="flex flex-col justify-center items-center gap-10">
           <button
             className="bg-green-400 w-48 text-lg font-semibold rounded-xl"
-            onClick={() => showSignUp()}
+            onClick={() => navigate("/signup")}
           >
             CREATE AN ACCOUNT
           </button>
           <div className="flex flex-col justify-center items-center gap-2">
             <p>Already have an account?</p>
-            <button className="bg-blue-400 w-24 text-lg font-semibold rounded-xl">
+            <button
+              className="bg-blue-400 w-24 text-lg font-semibold rounded-xl"
+              onClick={() => navigate("/login")}
+            >
               SIGN IN
             </button>
           </div>

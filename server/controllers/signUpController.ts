@@ -1,13 +1,6 @@
 import { Request, Response } from "express";
 import { authModel } from "../models/authModel";
-import { Error } from "mongoose";
-
-export const enum AlertEnum {
-  none,
-  signUp,
-  signed,
-  logedIn,
-}
+import { AlertEnum } from "../src/alertEnum";
 
 export const signUpController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
