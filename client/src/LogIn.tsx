@@ -14,13 +14,15 @@ export const LogIn = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // const options = {
-    //   headers: { "content-type": "application/json" },
-    // };
+    console.log(`email: ${email}, password: ${password}`);
+    const options = {
+      headers: { "content-type": "application/json" },
+    };
     axios
-      .get(" http://localhost:3000/login")
+      .get(`http://localhost:3000/login/${email}/${password}`, options)
       .then((response: AxiosResponse<AlertType>) => {
         //setRes(response.data);
+        console.log("response");
         console.log(response);
       })
       .catch(async (error: Error) => {
