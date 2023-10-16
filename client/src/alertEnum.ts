@@ -3,6 +3,5 @@ export const enum AlertEnum {
     signUp,
     signed,
     logedIn,
-    emailNotMatch,
-    passwordNotMatch
+    emailAndPassswordNotMatch,
   }

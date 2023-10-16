@@ -5,8 +5,10 @@ import { Alert, AlertType } from "./Alert";
 import { AlertEnum } from "./alertEnum";
 
 export const SignUp = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
   const [res, setRes] = useState<AlertType>({
     isExist: AlertEnum.none,
     msg: "",
@@ -21,8 +23,7 @@ export const SignUp = () => {
       .post(
         " http://localhost:3000/signup",
         {
-          email: email,
-          password: password,
+          ...inputValue,
         },
         options
       )
@@ -50,8 +51,10 @@ export const SignUp = () => {
             type="email"
             id="email"
             placeholder="xyz@gg.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={inputValue.email}
+            onChange={(e) =>
+              setInputValue({ ...inputValue, email: e.target.value })
+            }
             required
           />
           <label htmlFor="password">Password:</label>
@@ -59,8 +62,10 @@ export const SignUp = () => {
             type="password"
             id="password"
             placeholder="*-*-"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={inputValue.password}
+            onChange={(e) =>
+              setInputValue({ ...inputValue, password: e.target.value })
+            }
             required
           />
           <div className="flex flex-col justify-center items-center w-full mt-5">

@@ -5,8 +5,10 @@ import { Alert, AlertType } from "./Alert";
 import { AlertEnum } from "./alertEnum";
 
 export const LogIn = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
   const [res, setRes] = useState<AlertType>({
     isExist: AlertEnum.none,
     msg: "",
@@ -14,14 +16,17 @@ export const LogIn = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(`email: ${email}, password: ${password}`);
+    console.log(`email: ${inputValue.email}, password: ${inputValue.password}`);
     const options = {
       headers: { "content-type": "application/json" },
     };
     axios
-      .get(`http://localhost:3000/login/${email}/${password}`, options)
+      .get(
+        `http://localhost:3000/login/${inputValue.email}/${inputValue.password}`,
+        options
+      )
       .then((response: AxiosResponse<AlertType>) => {
-        //setRes(response.data);
+        setRes(response.data);
         console.log("response");
         console.log(response);
       })
@@ -45,8 +50,10 @@ export const LogIn = () => {
             type="email"
             id="email"
             placeholder="xyz@gg.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={inputValue.email}
+            onChange={(e) =>
+              setInputValue({ ...inputValue, email: e.target.value })
+            }
             required
           />
           <label htmlFor="password">Password:</label>
@@ -54,8 +61,10 @@ export const LogIn = () => {
             type="password"
             id="password"
             placeholder="*-*-"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={inputValue.password}
+            onChange={(e) =>
+              setInputValue({ ...inputValue, password: e.target.value })
+            }
             required
           />
           <div className="flex flex-col justify-center items-center w-full mt-5">
