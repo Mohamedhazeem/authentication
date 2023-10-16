@@ -7,7 +7,7 @@ const authSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        requires: [true, 'Your password is required']
+        required: [true, 'Your password is required']
     }
 });
 
