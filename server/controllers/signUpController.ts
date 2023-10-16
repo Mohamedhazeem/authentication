@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { authModel } from "../models/authModel";
 import { AlertEnum } from "../src/alertEnum";
 import bcrypt from "bcrypt";
+import { generateJwtToken } from "../utilis/generateToken";
 
 export const signUpController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -15,6 +16,7 @@ export const signUpController = async (req: Request, res: Response) => {
       const pass = bcrypt.hashSync(password,10);
       const user = new authModel({ email: email, password: pass});
       const savedUser = await user.save();
+      res.cookie('token',generateJwtToken(user.id));
       res.json({isExist:AlertEnum.signUp, msg: `Account created successfully` });
     }
   } catch {

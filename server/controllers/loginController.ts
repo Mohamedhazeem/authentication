@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { authModel } from "../models/authModel";
 import { AlertEnum } from "../src/alertEnum";
 import bcrypt from "bcrypt";
+import { generateJwtToken } from "../utilis/generateToken";
 
 export const loginController = async (req: Request,res: Response) =>{
    
@@ -11,6 +12,7 @@ export const loginController = async (req: Request,res: Response) =>{
     
       const result = bcrypt.compareSync(password,existUser!.password)
       if (result)  {
+         res.cookie('token',generateJwtToken(existUser!.id));
          res.json({isExist:AlertEnum.logedIn, msg: `Successfully loged!` });
       }
        else {
