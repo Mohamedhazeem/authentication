@@ -6,7 +6,7 @@ import { generateJwtToken } from "../utilis/generateToken";
 
 export const loginController = async (req: Request,res: Response) =>{
    
-    const { email, password } = req.params;
+    const { email, password } = req.body;
     try {
       const existUser  = await authModel.findOne({ email: email});
     

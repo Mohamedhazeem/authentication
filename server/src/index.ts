@@ -15,7 +15,7 @@ mongoose.connect(process.env.DATABASE!).then(
 ).catch(()=> console.log('Failed to connect'))
 
 app.post('/signup',signUpController);
-app.get('/login/:email/:password',loginController);
+app.post('/login',loginController);
 
 app.get('/', (req, res) =>{
     res.json('hello hazeem')

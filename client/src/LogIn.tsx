@@ -21,8 +21,11 @@ export const LogIn = () => {
       headers: { "content-type": "application/json" },
     };
     axios
-      .get(
-        `http://localhost:3000/login/${inputValue.email}/${inputValue.password}`,
+      .post(
+        `http://localhost:3000/login`,
+        {
+          ...inputValue,
+        },
         options
       )
       .then((response: AxiosResponse<AlertType>) => {
